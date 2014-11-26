@@ -17,5 +17,13 @@
   "license": "MIT",
   "directories": {
     "example": "example"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevinswiber/revolt-gzip.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kevinswiber/revolt-gzip/issues"
+  },
+  "homepage": "https://github.com/kevinswiber/revolt-gzip"
 }
