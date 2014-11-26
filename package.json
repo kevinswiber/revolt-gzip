@@ -1,0 +1,21 @@
+{
+  "name": "revolt-gzip",
+  "version": "0.0.0",
+  "description": "Gzip compression for Revolt HTTP Client.",
+  "main": "gzip.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gzip",
+    "http",
+    "client",
+    "compress",
+    "revolt"
+  ],
+  "author": "Kevin Swiber <kswiber@gmail.com>",
+  "license": "MIT",
+  "directories": {
+    "example": "example"
+  }
+}
