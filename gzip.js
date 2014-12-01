@@ -15,7 +15,7 @@ module.exports = function(handle) {
     return pipeline.map(function(env) {
       var encoding = env.response.headers['content-encoding'];
 
-      if (encoding && encoding.toLowerCase() === 'gzip') {
+      if (encoding && encoding.toLowerCase() === 'gzip' && env.response.body) {
         var unzipStream = zlib.createGunzip();
         env.response.body = env.response.body.pipe(unzipStream);
       }
@@ -26,6 +26,10 @@ module.exports = function(handle) {
 };
 
 function has(obj, name) {
+  if (typeof obj !== 'object') {
+    return false;
+  }
+
   var keys = Object.keys(obj);
   var name = name.toLowerCase();
 
