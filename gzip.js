@@ -3,8 +3,8 @@ var zlib = require('zlib');
 module.exports = function(handle) {
   handle('request', function(pipeline) {
     return pipeline.map(function(env) {
-      if (!has(env.options.headers, 'accept-encoding')) {
-        env.options.headers['accept-encoding'] = 'gzip';
+      if (!has(env.request.headers, 'accept-encoding')) {
+        env.request.headers['accept-encoding'] = 'gzip';
       }
 
       return env;
