@@ -7,7 +7,6 @@ argo()
   .use(require('argo-gzip'))
   .get('/', function(handle) {
     handle('request', function(env, next) {
-      console.log(env.request.headers);
       env.response.body = 'Hello world';
       next(env);
     });

@@ -1,23 +1,27 @@
 var zlib = require('zlib');
 
 module.exports = function(handle) {
-  handle('request', function(env, next) {
-    if (!has(env.options.headers, 'accept-encoding')) {
-      env.options.headers['accept-encoding'] = 'gzip';
-    }
+  handle('request', function(pipeline) {
+    return pipeline.map(function(env) {
+      if (!has(env.options.headers, 'accept-encoding')) {
+        env.options.headers['accept-encoding'] = 'gzip';
+      }
 
-    next(env);
+      return env;
+    });
   });
 
-  handle('response', function(env, next) {
-    var encoding = env.response.headers['content-encoding'];
+  handle('response', function(pipeline) {
+    return pipeline.map(function(env) {
+      var encoding = env.response.headers['content-encoding'];
 
-    if (encoding && encoding.toLowerCase() === 'gzip') {
-      var unzipStream = zlib.createGunzip();
-      env.response.body = env.response.body.pipe(unzipStream);
-    }
+      if (encoding && encoding.toLowerCase() === 'gzip') {
+        var unzipStream = zlib.createGunzip();
+        env.response.body = env.response.body.pipe(unzipStream);
+      }
 
-    next(env);
+      return env;
+    });
   });
 };
 
